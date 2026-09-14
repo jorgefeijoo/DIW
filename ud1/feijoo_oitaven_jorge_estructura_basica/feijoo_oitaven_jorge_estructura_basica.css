@@ -1,0 +1,52 @@
+* {
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+header {
+    background-color: black;
+    color: yellow;
+    padding: 2rem;  
+}
+
+#divPrincipal {
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    flex: 1; 
+}
+
+nav {
+    background-color: gray;
+    padding: 1rem;
+}
+
+nav a {
+    color: greenyellow;
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+#derecha {
+    color: magenta;
+    background-color: darkgray;
+    padding: 1rem;
+}
+
+footer {
+    background-color: lightgray;
+    color: rgba(235, 3, 3, 0.445);
+    text-align: center;
+    padding: 2rem;
+}
+
+
+
+
+
+
