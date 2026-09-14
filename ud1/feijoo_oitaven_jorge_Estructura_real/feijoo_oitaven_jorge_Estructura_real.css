@@ -1,0 +1,17 @@
+
+
+#headerPrincipal{
+    background-color: rgba(255, 0, 0, 0.644);
+    margin-bottom: 5px;
+    padding: 1rem
+}
+#footerPrincipal{
+    background-color: rgba(255, 0, 0, 0.644);
+    margin-top: 5px;
+    padding: 1rem;
+
+    
+}
+section{
+    background-color: rgba(255, 0, 0, 0.644);
+}
