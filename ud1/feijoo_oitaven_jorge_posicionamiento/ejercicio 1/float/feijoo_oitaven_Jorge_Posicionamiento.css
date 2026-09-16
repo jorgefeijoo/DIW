@@ -1,0 +1,32 @@
+* {
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0 auto;
+}
+div {
+  height: 100vh;
+  border: 2px dotted black;
+}
+.clearfix::after {
+  content: '';
+  clear: both;
+  display: table;
+}
+#rojo {
+  float: left;
+  background-color: red;
+  width: 33.33%;
+}
+#blanco {
+  float: left;
+  background-color: white;
+  width: 33.33%;
+}
+#azul {
+  float: left;
+  background-color: blue;
+  width: 33.33%;
+}

@@ -1,0 +1,23 @@
+* {
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0 auto;
+}
+#principal {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  height: 100vh;
+  border: 2px dotted black;
+}
+#rojo {
+  background-color: red;
+}
+#blanco {
+  background-color: white;
+}
+#azul {
+  background-color: blue;
+}
