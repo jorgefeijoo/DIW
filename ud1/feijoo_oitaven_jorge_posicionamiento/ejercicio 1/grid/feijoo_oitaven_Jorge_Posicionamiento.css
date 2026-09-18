@@ -12,6 +12,10 @@ body {
   height: 100vh;
   border: 2px dotted black;
 }
+
+#verde {
+  background-color: green;
+}
 #rojo {
   background-color: red;
 }
