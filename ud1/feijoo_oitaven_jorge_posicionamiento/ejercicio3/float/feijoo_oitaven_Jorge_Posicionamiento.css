@@ -1,0 +1,50 @@
+* {
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0 auto;
+}
+
+#principal {
+  border: solid black 1px;
+  height: 100vh;
+  overflow: hidden; 
+}
+
+#contenedor-rojo-verde {
+  float: left; 
+  width: 50%;  
+  height: 100%; 
+}
+
+#contenedor-azul-morado {
+  float: left; 
+  width: 50%;
+  height: 100%;
+}
+
+#verde {
+  background-color: green;
+  margin: 10px;
+  height: calc(50% - 20px); 
+}
+
+#rojo {
+  background-color: red;
+  margin: 10px;
+  height: calc(50% - 20px);
+}
+
+#azul {
+  background-color: blue;
+  margin: 10px;
+  height: calc(33.333% - 20px); 
+}
+
+#morado {
+  background-color: #8a2be2;
+  margin: 10px;
+  height: calc(66.666% - 20px); 
+}

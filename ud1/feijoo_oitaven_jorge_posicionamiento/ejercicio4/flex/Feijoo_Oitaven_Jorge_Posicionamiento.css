@@ -1,0 +1,29 @@
+* {
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0 auto;
+}
+
+#principal {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    border: dotted black 1px;
+    height: 100vh;
+}
+
+#naranja {
+    background-color: #FF7043;
+    margin: 10px;
+    flex: 1;
+
+}
+
+#azul {
+    background-color: #6495ED;
+    margin: 10px;
+    flex: 1;
+}

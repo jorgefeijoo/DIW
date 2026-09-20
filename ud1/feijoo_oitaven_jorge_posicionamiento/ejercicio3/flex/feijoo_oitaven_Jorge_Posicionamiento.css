@@ -8,39 +8,49 @@ body {
 }
 
 #principal {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+  display: flex;
   gap: 10px;
   border: solid black 1px;
   height: 100vh;
 }
 
 #contenedor-rojo-verde {
-  display: grid;
-  grid-template-rows: 1fr 1fr;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
 }
 
 #contenedor-azul-morado {
-  display: grid;
-  grid-template-rows: 1fr 2fr;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
 }
 
 #verde {
   background-color: green;
   margin: 10px;
+  flex: 1;
+
+
 }
 
 #azul {
   background-color: blue;
   margin: 10px;
+  flex: 1;
+
 }
 
 #rojo {
   background-color: red;
   margin: 10px;
+  flex: 1;
+
 }
 
 #morado {
   background-color: #8a2be2;
   margin: 10px;
+  flex: 2;
+
 }
