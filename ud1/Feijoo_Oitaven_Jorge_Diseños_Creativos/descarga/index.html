@@ -1,0 +1,463 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Botón de Descarga - Cohete Animado</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@700&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      :root {
+        --btn-bg: #4f46e5; /* Indigo 600 */
+        --btn-shadow: #3730a3; /* Indigo 800 */
+        --btn-success: #10b981; /* Emerald 500 */
+        --btn-success-shadow: #047857; /* Emerald 700 */
+        --text-color: #ffffff;
+        --progress-bg: rgba(255, 255, 255, 0.2);
+        --progress-fill: rgba(255, 255, 255, 0.4);
+      }
+
+      body {
+        background-color: #0f172a; /* Slate 900 - Espacio */
+        font-family: 'Nunito', sans-serif;
+        overflow: hidden;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+        background-image:
+          radial-gradient(
+            circle at 15% 50%,
+            rgba(255, 255, 255, 0.08) 2px,
+            transparent 3px
+          ),
+          radial-gradient(
+            circle at 85% 30%,
+            rgba(255, 255, 255, 0.08) 2px,
+            transparent 3px
+          ),
+          radial-gradient(
+            circle at 50% 80%,
+            rgba(255, 255, 255, 0.05) 1px,
+            transparent 2px
+          );
+      }
+
+      /* Contenedor principal del botón */
+      .btn-container {
+        position: relative;
+        width: 280px;
+        height: 80px;
+        perspective: 1000px;
+      }
+
+      /* Estilos base del botón */
+      .rocket-button {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        background-color: var(--btn-bg);
+        border-radius: 40px;
+        border: none;
+        cursor: pointer;
+        outline: none;
+        box-shadow:
+          0 8px 0 var(--btn-shadow),
+          0 15px 20px rgba(0, 0, 0, 0.4);
+        transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+        overflow: visible; /* Importante para que el cohete salga */
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        padding: 0 30px;
+        -webkit-tap-highlight-color: transparent;
+      }
+
+      /* Efecto de presionar (solo en reposo) */
+      .rocket-button:not(.is-active):not(.is-done):active {
+        transform: translateY(6px);
+        box-shadow:
+          0 2px 0 var(--btn-shadow),
+          0 5px 10px rgba(0, 0, 0, 0.4);
+      }
+
+      /* Fondo de progreso */
+      .progress-track {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 100%;
+        border-radius: 40px;
+        background-color: transparent;
+        overflow: hidden;
+        z-index: 1;
+        pointer-events: none;
+      }
+
+      .progress-fill {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 0%;
+        background-color: var(--progress-fill);
+        transition: width 0.1s linear;
+      }
+
+      /* Texto del botón */
+      .btn-text {
+        position: relative;
+        z-index: 10;
+        color: var(--text-color);
+        font-size: 1.25rem;
+        font-weight: 900;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        font-family: 'Fredoka One', cursive;
+        transition: opacity 0.3s;
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        text-align: right;
+        width: 160px;
+      }
+
+      /* Contenedor del Cohete */
+      .rocket-wrapper {
+        position: absolute;
+        left: 20px;
+        bottom: 10px;
+        width: 60px;
+        height: 80px;
+        z-index: 20;
+        transition: transform 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        transform-origin: center bottom;
+      }
+
+      /* Cohete SVG */
+      .rocket-svg {
+        width: 100%;
+        height: 100%;
+        position: relative;
+        z-index: 22;
+      }
+
+      /* Llamas del cohete */
+      .flames {
+        position: absolute;
+        bottom: -25px;
+        left: 50%;
+        transform: translateX(-50%) scaleY(0);
+        width: 30px;
+        height: 40px;
+        z-index: 21;
+        transform-origin: top center;
+        opacity: 0;
+        transition:
+          opacity 0.3s,
+          transform 0.3s;
+      }
+
+      /* Humo / Nubes al despegar */
+      .clouds {
+        position: absolute;
+        bottom: -15px;
+        left: 10px;
+        width: 80px;
+        height: 30px;
+        opacity: 0;
+        z-index: 15;
+        transition: opacity 0.3s;
+      }
+
+      /* --- ESTADOS DE ANIMACIÓN --- */
+
+      /* 1. Preparación (Temblando) */
+      .rocket-button.is-prep .rocket-wrapper {
+        animation: shake 0.5s ease-in-out infinite;
+      }
+      .rocket-button.is-prep .clouds {
+        opacity: 1;
+        animation: puff 1s ease-out infinite;
+      }
+
+      /* 2. Volando (Despegue y Descarga) */
+      .rocket-button.is-flying .rocket-wrapper {
+        transform: translateY(-120px) scale(1.1);
+        animation: float 2s ease-in-out infinite alternate;
+      }
+      .rocket-button.is-flying .flames {
+        opacity: 1;
+        transform: translateX(-50%) scaleY(1);
+        animation: flicker 0.15s infinite alternate;
+      }
+      .rocket-button.is-flying {
+        transform: translateY(4px);
+        box-shadow:
+          0 4px 0 var(--btn-shadow),
+          0 10px 15px rgba(0, 0, 0, 0.4);
+      }
+
+      /* 3. Aterrizaje */
+      .rocket-button.is-landing .rocket-wrapper {
+        transform: translateY(0) scale(1);
+        transition: transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      }
+      .rocket-button.is-landing .flames {
+        opacity: 0;
+        transform: translateX(-50%) scaleY(0);
+        transition:
+          opacity 0.2s,
+          transform 0.4s;
+      }
+
+      /* 4. Completado */
+      .rocket-button.is-done {
+        background-color: var(--btn-success);
+        box-shadow:
+          0 8px 0 var(--btn-success-shadow),
+          0 15px 20px rgba(0, 0, 0, 0.4);
+      }
+      .rocket-button.is-done .rocket-wrapper {
+        animation: bounce 0.6s cubic-bezier(0.28, 0.84, 0.42, 1);
+      }
+
+      /* --- KEYFRAMES --- */
+      @keyframes shake {
+        0% {
+          transform: translate(1px, 1px) rotate(0deg);
+        }
+        10% {
+          transform: translate(-1px, -2px) rotate(-1deg);
+        }
+        20% {
+          transform: translate(-3px, 0px) rotate(1deg);
+        }
+        30% {
+          transform: translate(3px, 2px) rotate(0deg);
+        }
+        40% {
+          transform: translate(1px, -1px) rotate(1deg);
+        }
+        50% {
+          transform: translate(-1px, 2px) rotate(-1deg);
+        }
+        60% {
+          transform: translate(-3px, 1px) rotate(0deg);
+        }
+        70% {
+          transform: translate(3px, 1px) rotate(-1deg);
+        }
+        80% {
+          transform: translate(-1px, -1px) rotate(1deg);
+        }
+        90% {
+          transform: translate(1px, 2px) rotate(0deg);
+        }
+        100% {
+          transform: translate(1px, -2px) rotate(-1deg);
+        }
+      }
+
+      @keyframes float {
+        0% {
+          transform: translateY(-120px) scale(1.1);
+        }
+        100% {
+          transform: translateY(-135px) scale(1.1);
+        }
+      }
+
+      @keyframes flicker {
+        0% {
+          transform: translateX(-50%) scaleY(0.9) scaleX(0.95);
+          opacity: 0.8;
+        }
+        100% {
+          transform: translateX(-50%) scaleY(1.2) scaleX(1.05);
+          opacity: 1;
+        }
+      }
+
+      @keyframes bounce {
+        0% {
+          transform: scale(1);
+        }
+        50% {
+          transform: scale(1.2);
+        }
+        100% {
+          transform: scale(1);
+        }
+      }
+
+      @keyframes puff {
+        0% {
+          transform: scale(0.8);
+          opacity: 0.8;
+        }
+        100% {
+          transform: scale(1.5);
+          opacity: 0;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="btn-container">
+      <button id="downloadBtn" class="rocket-button">
+        <!-- Barra de progreso -->
+        <div class="progress-track">
+          <div id="progressFill" class="progress-fill"></div>
+        </div>
+
+        <!-- Nubes de humo (despegue) -->
+        <svg
+          class="clouds"
+          viewBox="0 0 100 40"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M10,30 Q20,10 40,20 Q60,0 80,20 Q95,20 90,35 Z"
+            fill="#ffffff"
+            opacity="0.6"
+          />
+        </svg>
+
+        <!-- Contenedor del Cohete Animado -->
+        <div class="rocket-wrapper">
+          <!-- Llamas propulsoras -->
+          <svg
+            class="flames"
+            viewBox="0 0 40 60"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path d="M20,0 L40,60 L20,45 L0,60 Z" fill="#F59E0B" />
+            <!-- Naranja -->
+            <path d="M20,10 L30,50 L20,40 L10,50 Z" fill="#FCD34D" />
+            <!-- Amarillo -->
+            <path d="M20,20 L25,40 L20,35 L15,40 Z" fill="#FFFFFF" />
+            <!-- Blanco -->
+          </svg>
+
+          <!-- Cuerpo del Cohete -->
+          <svg
+            class="rocket-svg"
+            viewBox="0 0 60 100"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <!-- Aleta izquierda -->
+            <path d="M15,60 L0,90 L15,80 Z" fill="#EF4444" />
+            <!-- Aleta derecha -->
+            <path d="M45,60 L60,90 L45,80 Z" fill="#EF4444" />
+            <!-- Aleta central -->
+            <path d="M28,70 L32,70 L32,95 L28,95 Z" fill="#DC2626" />
+
+            <!-- Cuerpo principal -->
+            <path
+              d="M30,0 C10,30 15,70 15,80 L45,80 C45,70 50,30 30,0 Z"
+              fill="#F8FAFC"
+            />
+            <path d="M30,0 C10,30 15,70 15,80 L30,80 Z" fill="#E2E8F0" />
+            <!-- Sombra cuerpo -->
+
+            <!-- Punta del cohete -->
+            <path
+              d="M30,0 C22,12 18,25 17,32 L43,32 C42,25 38,12 30,0 Z"
+              fill="#EF4444"
+            />
+            <path d="M30,0 C22,12 18,25 17,32 L30,32 Z" fill="#DC2626" />
+            <!-- Sombra punta -->
+
+            <!-- Ventana -->
+            <circle cx="30" cy="50" r="10" fill="#94A3B8" />
+            <circle cx="30" cy="50" r="7" fill="#38BDF8" />
+            <path
+              d="M26,46 A7,7 0 0,1 33,45 A7,7 0 0,0 25,52 A7,7 0 0,1 26,46 Z"
+              fill="#BAE6FD"
+            />
+            <!-- Brillo ventana -->
+
+            <!-- Remaches -->
+            <circle cx="23" cy="72" r="1" fill="#94A3B8" />
+            <circle cx="30" cy="72" r="1" fill="#94A3B8" />
+            <circle cx="37" cy="72" r="1" fill="#94A3B8" />
+          </svg>
+        </div>
+
+        <!-- Texto de estado -->
+        <span id="btnText" class="btn-text">Descargar</span>
+      </button>
+    </div>
+
+    <script>
+      const btn = document.getElementById('downloadBtn');
+      const text = document.getElementById('btnText');
+      const fill = document.getElementById('progressFill');
+      let isDownloading = false;
+
+      btn.addEventListener('click', () => {
+        // Prevenir múltiples clics
+        if (isDownloading) return;
+        isDownloading = true;
+
+        // 1. Estado de Preparación (Idle -> Prep)
+        btn.classList.add('is-active');
+        btn.classList.add('is-prep');
+        text.textContent = 'Iniciando...';
+        fill.style.width = '0%';
+
+        // Simular tiempo de preparación antes del despegue
+        setTimeout(() => {
+          // 2. Estado Volando / Descargando (Prep -> Flying)
+          btn.classList.remove('is-prep');
+          btn.classList.add('is-flying');
+
+          let progress = 0;
+
+          // Simulación de descarga con setInterval
+          const downloadInterval = setInterval(() => {
+            // Incrementar progreso aleatoriamente
+            progress += Math.random() * 8 + 2;
+
+            if (progress >= 100) {
+              progress = 100;
+              clearInterval(downloadInterval);
+
+              // 3. Estado de Aterrizaje (Flying -> Landing)
+              btn.classList.remove('is-flying');
+              btn.classList.add('is-landing');
+              text.textContent = 'Verificando...';
+
+              // Esperar a que el cohete baje
+              setTimeout(() => {
+                // 4. Estado Completado (Landing -> Done)
+                btn.classList.remove('is-landing');
+                btn.classList.add('is-done');
+                text.textContent = '¡Listo! ✓';
+
+                // Resetear el botón después de unos segundos
+                setTimeout(() => {
+                  btn.classList.remove('is-done', 'is-active');
+                  text.textContent = 'Descargar';
+                  fill.style.width = '0%';
+                  isDownloading = false;
+                }, 3500);
+              }, 600); // Duración del CSS de aterrizaje
+            }
+
+            // Actualizar UI de progreso
+            fill.style.width = `${progress}%`;
+            if (btn.classList.contains('is-flying')) {
+              text.textContent = `${Math.floor(progress)}%`;
+            }
+          }, 150); // Velocidad de actualización del progreso
+        }, 800); // Duración de la sacudida previa al despegue
+      });
+    </script>
+  </body>
+</html>

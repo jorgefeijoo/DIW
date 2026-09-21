@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Control de Volumen Interactive Stickman</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h2>Control de Volumen</h2>
+
+      <!-- Contenedor del muñeco SVG -->
+      <div id="stickman-container">
+        <svg
+          id="stickman"
+          viewBox="0 0 200 300"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <g
+            id="stickman-body"
+            stroke="var(--stickman-color, #1a1a1a)"
+            stroke-width="6"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            fill="none"
+          >
+            <circle cx="100" cy="60" r="40" />
+
+            <line x1="100" y1="100" x2="100" y2="200" />
+
+            <line x1="100" y1="120" x2="40" y2="70" />
+            <line x1="100" y1="120" x2="160" y2="70" />
+
+            <line x1="100" y1="200" x2="50" y2="280" />
+            <line x1="100" y1="200" x2="150" y2="280" />
+          </g>
+
+          <g id="face">
+            <g id="normal-eyes" fill="var(--stickman-color, #1a1a1a)">
+              <circle cx="85" cy="50" r="5" />
+              <circle cx="115" cy="50" r="5" />
+            </g>
+
+            <path
+              id="smile"
+              d="M 80 65 Q 100 85 120 65"
+              stroke="var(--stickman-color, #1a1a1a)"
+              stroke-width="4"
+              fill="none"
+              stroke-linecap="round"
+            />
+
+            <g id="scream-face" style="display: none">
+              <line
+                x1="70"
+                y1="40"
+                x2="95"
+                y2="45"
+                stroke="var(--stickman-color, #1a1a1a)"
+                stroke-width="4"
+                stroke-linecap="round"
+              />
+              <line
+                x1="130"
+                y1="40"
+                x2="105"
+                y2="45"
+                stroke="var(--stickman-color, #1a1a1a)"
+                stroke-width="4"
+                stroke-linecap="round"
+              />
+              <ellipse
+                cx="100"
+                cy="70"
+                rx="10"
+                ry="15"
+                fill="var(--stickman-color, #1a1a1a)"
+              />
+            </g>
+
+            <g id="relieved-face" style="display: none">
+              <path
+                d="M 78 52 Q 85 43 92 52"
+                stroke="var(--stickman-color, #1a1a1a)"
+                stroke-width="4"
+                fill="none"
+                stroke-linecap="round"
+              />
+              <path
+                d="M 108 52 Q 115 43 122 52"
+                stroke="var(--stickman-color, #1a1a1a)"
+                stroke-width="4"
+                fill="none"
+                stroke-linecap="round"
+              />
+
+              <circle
+                cx="100"
+                cy="70"
+                r="6"
+                fill="var(--stickman-color, #1a1a1a)"
+              />
+            </g>
+          </g>
+        </svg>
+
+        <div id="btn-up" class="touch-zone" title="Subir volumen">
+          <span>+ SUBIR</span>
+        </div>
+        <div id="btn-down" class="touch-zone" title="Bajar volumen">
+          <span>- BAJAR</span>
+        </div>
+      </div>
+
+      <div class="volume-display">
+        Volumen: <span id="volume-text">0</span>%
+      </div>
+
+      <div class="progress-bar">
+        <div id="progress-fill"></div>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
