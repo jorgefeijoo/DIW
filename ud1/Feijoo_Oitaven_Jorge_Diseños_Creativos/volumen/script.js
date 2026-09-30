@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   let volume = 0;
   let pressInterval = null;
-  let currentAction = null; // 'up' o 'down'
+  let currentAction = null;
 
   function updateVisuals() {
     volumeText.innerText = Math.floor(volume);
@@ -61,7 +61,6 @@ document.addEventListener('DOMContentLoaded', () => {
       screamFace.style.display = 'none';
       relievedFace.style.display = 'block';
     } else {
-      // Estado de reposo
       normalEyes.style.display = 'block';
       smile.style.display = 'block';
       screamFace.style.display = 'none';

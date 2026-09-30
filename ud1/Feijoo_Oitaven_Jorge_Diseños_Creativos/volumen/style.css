@@ -50,7 +50,6 @@ h2 {
   overflow: hidden;
 }
 
-/* Animación de temblor */
 @keyframes shake {
   0% {
     transform: translate(
