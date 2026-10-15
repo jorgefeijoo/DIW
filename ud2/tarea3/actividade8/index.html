@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script defer src="script.js"></script>
+    <style>
+        #divPrincipal {
+            display: flex;
+            flex-direction: column;
+            gap: 12px; 
+            max-width: 400px;
+            margin-top: 20px;
+        }
+
+        .opcion-pago {
+            display: flex;
+            align-items: center; 
+            gap: 8px; 
+        }
+
+        .opcion-pago input, 
+        .opcion-pago label {
+            cursor: pointer;
+        }
+
+        #boton {
+            width: 300px;
+            padding: 8px;
+            margin-top: 10px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Tarea 8</h1>
+
+    <div id="divPrincipal">
+       
+        <div class="opcion-pago">
+            <input type="radio" id="credito" name="pago" value="Tarjeta de Crédito">
+            <label for="credito">Tarjeta de crédito</label>
+        </div>
+
+        <div class="opcion-pago">
+            <input type="radio" id="paypal" name="pago" value="PayPal">
+            <label for="paypal">PayPal</label>
+        </div>
+
+        <div class="opcion-pago">
+            <input type="radio" id="transferencia" name="pago" value="Transferencia Bancaria">
+            <label for="transferencia">Transferencia bancaria</label>
+        </div>
+        
+      
+        <button id="boton">Confirmar</button>
+
+        <p id="parrafo"></p>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+    <script defer src="script.js"></script>
+    <title>Actividades Integradas</title>
+    <style>
+        .actividad {
+            display: none;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
+        }
+
+        .actividad.activa {
+            display: block;
+        }
+
+
+        #formulario-act7 {
+            display: flex;
+            flex-direction: column;
+            width: 300px;
+            gap: 10px;
+        }
+
+
+        #divPrincipal-act8 {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            max-width: 400px;
+            margin-top: 20px;
+        }
+
+        .opcion-pago {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg bg-dark navbar-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Mis Actividades</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="#" onclick="mostrarActividad('act1')">Act. 1</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#" onclick="mostrarActividad('act2')">Act. 2</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#" onclick="mostrarActividad('act3')">Act. 3</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#" onclick="mostrarActividad('act4')">Act. 4</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#" onclick="mostrarActividad('act5')">Act. 5</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#" onclick="mostrarActividad('act6')">Act. 6</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#" onclick="mostrarActividad('act7')">Act. 7</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#" onclick="mostrarActividad('act8')">Act. 8</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#" onclick="mostrarActividad('act9')">Act. 9</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+
+        <div id="act1" class="actividad activa">
+            <h1>Actividad 1</h1>
+            <button id="boton-act1" class="btn btn-dark">Pulsa para mostrar un mensaje por consola</button>
+        </div>
+
+        <div id="act2" class="actividad">
+            <h1>Actividad 2</h1>
+            <button id="boton1-act2" class="btn btn-dark">Aceptar</button>
+            <button id="boton2-act2" class="btn btn-dark">Cancelar</button>
+        </div>
+
+
+        <div id="act3" class="actividad">
+            <h1>Actividad 3</h1>
+            <label for="nombre-act3">Nombre:</label>
+            <input id="nombre-act3" type="text" class="form-control w-25 mb-2" />
+            <button id="boton-act3" class="btn btn-dark">Enviar datos</button>
+        </div>
+
+
+        <div id="act4" class="actividad">
+            <h1>Actividad 4</h1>
+            <label for="nombre-act4">Nombre:</label>
+            <input id="nombre-act4" type="text" class="form-control w-25 mb-2" />
+            <label for="apellidos-act4">Apellidos:</label>
+            <input id="apellidos-act4" type="text" class="form-control w-25 mb-2" />
+            <button id="boton-act4" class="btn btn-dark">Enviar datos</button>
+            <p id="saludo-act4" class="mt-3 "></p>
+        </div>
+
+
+        <div id="act5" class="actividad">
+            <h1>Actividad 5</h1>
+            <button id="boton-act5" class="btn btn-dark">Pulsa aquí!</button>
+            <p id="mensaje-act5" class="mt-3 text-dark"></p>
+        </div>
+
+        <div id="act6" class="actividad">
+            <h1>Actividad 6</h1>
+            <select name="colores" id="colores-act6" class="form-select w-25 mb-3">
+                <option value="rojo">Rojo</option>
+                <option value="verde">Verde</option>
+                <option value="azul">Azul</option>
+            </select>
+            <button id="boton-act6" class="btn btn-dark">Escoge color</button>
+        </div>
+
+
+        <div id="act7" class="actividad">
+            <h1>Actividad 7</h1>
+            <div id="formulario-act7">
+                <label for="usuario-act7">Usuario: </label>
+                <input type="text" id="usuario-act7" class="form-control" />
+                <label for="contrasena-act7">Contraseña: </label>
+                <input type="password" id="contrasena-act7" class="form-control" />
+                <button id="boton-act7" class="btn btn-dark">Iniciar Sesion</button>
+            </div>
+        </div>
+
+
+        <div id="act8" class="actividad">
+            <h1>Actividad 8</h1>
+            <div id="divPrincipal-act8">
+                <div class="opcion-pago">
+                    <input type="radio" id="credito" name="pago" value="Tarjeta de Crédito">
+                    <label for="credito">Tarjeta de crédito</label>
+                </div>
+                <div class="opcion-pago">
+                    <input type="radio" id="paypal" name="pago" value="PayPal">
+                    <label for="paypal">PayPal</label>
+                </div>
+                <div class="opcion-pago">
+                    <input type="radio" id="transferencia" name="pago" value="Transferencia Bancaria">
+                    <label for="transferencia">Transferencia bancaria</label>
+                </div>
+                <button id="boton-act8" class="btn btn-dark mt-2">Confirmar</button>
+                <p id="parrafo-act8" class="mt-2"></p>
+            </div>
+        </div>
+
+
+        <div id="act9" class="actividad">
+            <h1>Actividad 9</h1>
+            <p>Elige los ingredientes para tu pizza:</p>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="queso" name="ingredientes" value="Queso extra">
+                <label class="form-check-label" for="queso">Queso extra</label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="pepperoni" name="ingredientes" value="Pepperoni">
+                <label class="form-check-label" for="pepperoni">Pepperoni</label>
+            </div>
+            <div class="form-check mb-3">
+                <input class="form-check-input" type="checkbox" id="aceitunas" name="ingredientes" value="Aceitunas">
+                <label class="form-check-label" for="aceitunas">Aceitunas</label>
+            </div>
+            <button id="boton-act9" class="btn btn-dark">Confirmar pedido</button>
+            <p id="parrafo-act9" class="mt-3"></p>
+        </div>
+
+    </div>
+
+
+
+</body>
+
+</html>
