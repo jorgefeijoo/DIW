@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>a25jorgefo · Iniciar sesión</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="styles.css">
+  <script src="script.js" defer></script>
+</head>
+
+<body>
+  <div class="page">
+    <header class="header">
+      <a class="brand" href="#login" aria-label="a25jorgefo, inicio">
+        a25jorgefo
+      </a>
+      <a class="help" href="#">
+        <span aria-hidden="true">ⓘ</span> ¿Necesitas ayuda?
+      </a>
+    </header>
+
+    <div class="stage">
+
+      <!-- LOGIN -->
+      <main class="screen is-active" id="screen-login" data-screen="login" data-title="Iniciar sesión">
+        <div class="layout">
+          <aside class="side-panel side-panel--social" aria-labelledby="social-title">
+            <p class="eyebrow">INICIA SESIÓN</p>
+            <h2 id="social-title">Accede de forma rápida<br>y segura.</h2>
+            <p class="panel-description">Usa tu cuenta preferida para continuar en un solo paso.</p>
+
+            <div class="social-options">
+              <button class="social-button" type="button">
+                <img class="icon" src="images/google.png" alt="" aria-hidden="true">
+                Continuar con Google
+              </button>
+              <button class="social-button" type="button">
+                <img class="icon" src="images/apple.png" alt="" aria-hidden="true">
+                Continuar con Apple
+              </button>
+              <button class="social-button" type="button">
+                <img class="icon" src="images/facebook.png" alt="" aria-hidden="true">
+                Continuar con Facebook
+              </button>
+            </div>
+
+            <div class="privacy-note">
+              <div>
+                <strong>Tu privacidad, primero.</strong>
+                <p>Tus datos están en buenas manos.</p>
+              </div>
+            </div>
+          </aside>
+
+          <section class="form-section" aria-labelledby="login-title">
+            <div class="form-container">
+              <h1 id="login-title">Bienvenido de nuevo.</h1>
+              <p class="intro">Inicia sesión para acceder a tu espacio personal.</p>
+
+              <form id="login-form" novalidate>
+                <div class="field">
+                  <label for="login-email">Correo electrónico</label>
+                  <input id="login-email" name="email" type="email" placeholder="nombre@ejemplo.com"
+                    autocomplete="username" autocapitalize="none" spellcheck="false" maxlength="254">
+                </div>
+
+                <div class="field">
+                  <label for="login-password">Contraseña</label>
+                  <div class="password-wrapper">
+                    <input id="login-password" name="password" type="password" placeholder="Introduce tu contraseña"
+                      autocomplete="current-password">
+                    <button class="password-toggle" type="button" aria-label="Mostrar contraseña"
+                      aria-controls="login-password" aria-pressed="false" data-toggle-password></button>
+                  </div>
+                </div>
+
+                <div class="form-options">
+                  <label class="remember">
+                    <input type="checkbox" id="remember" name="remember">
+                    Recordarme
+                  </label>
+                  <a href="#forgot">¿Olvidaste tu contraseña?</a>
+                </div>
+
+                <p class="form-message" id="login-message" role="alert" aria-live="polite"></p>
+
+                <button class="primary-button" type="submit">Iniciar sesión</button>
+              </form>
+
+              <div class="divider"><span>o continúa con</span></div>
+
+              <button class="social-button passkey" type="button">
+                <span aria-hidden="true">⌘</span>
+                Una llave de acceso
+              </button>
+
+              <p class="signup">¿Aún no tienes cuenta? <a href="#register">Regístrate</a></p>
+
+              <p class="demo-hint">Demo: <code>demo@ejemplo.com</code> / <code>Demo1234!</code></p>
+            </div>
+          </section>
+        </div>
+      </main>
+
+      <!--REGISTRO -->
+      <main class="screen" id="screen-register" data-screen="register" data-title="Crear cuenta">
+        <div class="layout">
+          <aside class="side-panel side-panel--gray">
+            <p class="eyebrow eyebrow--line">REGISTRO</p>
+            <h2>Tu cuenta.<br>Un nuevo<br>comienzo.</h2>
+            <p class="panel-description">Completa tus datos y elige una contraseña para crear tu cuenta.</p>
+            <div class="panel-foot">
+              <strong>Una buena base</strong>
+              <p>Algo que compartes solo con quien tú quieras: tu cuenta es tuya.</p>
+            </div>
+          </aside>
+
+          <section class="form-section" aria-labelledby="register-title">
+            <div class="form-container">
+              <h1 id="register-title" class="center">Bienvenido</h1>
+              <p class="intro center">Crea tu cuenta. Solo necesitas un momento.</p>
+
+              <form id="register-form" novalidate>
+                <div class="field">
+                  <label for="reg-name">Nombre</label>
+                  <input id="reg-name" type="text" placeholder="Tu nombre" autocomplete="given-name">
+                  <p class="field-error" data-error-for="reg-name"></p>
+                </div>
+                <div class="field">
+                  <label for="reg-surname">Apellidos</label>
+                  <input id="reg-surname" type="text" placeholder="Tus apellidos" autocomplete="family-name">
+                  <p class="field-error" data-error-for="reg-surname"></p>
+                </div>
+                <div class="field">
+                  <label for="reg-email">Correo electrónico</label>
+                  <input id="reg-email" type="email" placeholder="nombre@ejemplo.com" autocomplete="email"
+                    autocapitalize="none" spellcheck="false" maxlength="254">
+                  <p class="field-error" data-error-for="reg-email"></p>
+                </div>
+                <div class="field">
+                  <label for="reg-password">Contraseña</label>
+                  <div class="password-wrapper">
+                    <input id="reg-password" type="password" placeholder="Crea una contraseña"
+                      autocomplete="new-password">
+                    <button class="password-toggle" type="button" aria-label="Mostrar contraseña"
+                      aria-controls="reg-password" aria-pressed="false" data-toggle-password></button>
+                  </div>
+                  <p class="hint">Usa 8 o más caracteres, una mayúscula, un número y un símbolo.</p>
+                  <p class="field-error" data-error-for="reg-password"></p>
+                </div>
+                <div class="field">
+                  <label for="reg-confirm">Confirmar contraseña</label>
+                  <div class="password-wrapper">
+                    <input id="reg-confirm" type="password" placeholder="Repite tu contraseña"
+                      autocomplete="new-password">
+                    <button class="password-toggle" type="button" aria-label="Mostrar contraseña"
+                      aria-controls="reg-confirm" aria-pressed="false" data-toggle-password></button>
+                  </div>
+                  <p class="field-error" data-error-for="reg-confirm"></p>
+                </div>
+
+                <label class="remember terms">
+                  <input type="checkbox" id="reg-terms">
+                  <span>Acepto los <a href="#register" >Términos de uso</a> y la
+                    <a href="#register">Política de privacidad</a>.</span>
+                </label>
+                <p class="field-error" data-error-for="reg-terms"></p>
+
+                <button class="primary-button" type="submit">Crear cuenta</button>
+              </form>
+
+              <p class="signup">¿Ya tienes cuenta? <a href="#login">Inicia sesión</a></p>
+            </div>
+          </section>
+        </div>
+      </main>
+
+      <!--VERIFICACION-->
+      <main class="screen" id="screen-verify" data-screen="verify" data-title="Verificación de identidad">
+        <div class="layout">
+          <aside class="side-panel side-panel--gray">
+            <p class="eyebrow eyebrow--line">VERIFICACIÓN DE IDENTIDAD</p>
+            <h2>Un código.<br>Un paso<br>más.</h2>
+            <p class="panel-description">Introduce el código de 6 dígitos que te enviamos a tu correo para continuar.
+            </p>
+            <div class="panel-foot">
+              <strong>Solo para ti</strong>
+              <p>No compartas este código con nadie.</p>
+            </div>
+          </aside>
+
+          <section class="form-section" aria-labelledby="verify-title">
+            <div class="form-container">
+              <a class="back-link" href="#login">← Volver a iniciar sesión</a>
+              <h1 id="verify-title">Confirma que eres tú.</h1>
+              <p class="intro">Introduce el código de 6 dígitos que enviamos a tu correo electrónico.</p>
+
+              <p class="sent-to"><span id="verify-email">m•••@gmail.com</span>
+                <a href="#register" class="small-link">Cambiar correo</a>
+              </p>
+
+              <form id="verify-form" novalidate>
+                <p class="label-like" id="otp-label">Código de verificación</p>
+                <div class="otp" role="group" aria-labelledby="otp-label">
+                  <input class="otp-input" inputmode="numeric" maxlength="1" autocomplete="one-time-code"
+                    aria-label="Dígito 1">
+                  <input class="otp-input" inputmode="numeric" maxlength="1" aria-label="Dígito 2">
+                  <input class="otp-input" inputmode="numeric" maxlength="1" aria-label="Dígito 3">
+                  <input class="otp-input" inputmode="numeric" maxlength="1" aria-label="Dígito 4">
+                  <input class="otp-input" inputmode="numeric" maxlength="1" aria-label="Dígito 5">
+                  <input class="otp-input" inputmode="numeric" maxlength="1" aria-label="Dígito 6">
+                </div>
+                <p class="hint">El código caduca en 10 minutos.</p>
+                <p class="form-message" id="verify-message" role="alert" aria-live="polite"></p>
+
+                <button class="primary-button" type="submit">Verificar identidad</button>
+              </form>
+
+              <p class="resend">¿No has recibido el código?<br>
+                <button class="link-button" type="button" id="resend-btn" disabled>
+                  Reenviar código en <span id="resend-timer">00:45</span>
+                </button>
+              </p>
+
+              <p class="secure-note">Si no lo reconoces, ignora este mensaje.</p>
+              <p class="demo-hint">Demo: el código es <code>284196</code></p>
+            </div>
+          </section>
+        </div>
+      </main>
+
+      <!--RECUPERAR -->
+      <main class="screen" id="screen-forgot" data-screen="forgot" data-title="Recuperar acceso">
+        <div class="layout">
+          <aside class="side-panel side-panel--gray">
+            <p class="eyebrow eyebrow--line">RECUPERACIÓN DE CUENTA</p>
+            <h2>Tu acceso.<br>Una nueva<br>contraseña.</h2>
+            <p class="panel-description">Usa el correo de la cuenta para solicitar un enlace de recuperación.</p>
+            <div class="panel-foot">
+              <strong>Después del enlace</strong>
+              <p>Podrás crear una contraseña y volver a entrar.</p>
+            </div>
+          </aside>
+
+          <section class="form-section" aria-labelledby="forgot-title">
+            <div class="form-container">
+              <a class="back-link" href="#login">← Volver a iniciar sesión</a>
+              <h1 id="forgot-title">Recupera tu acceso.</h1>
+              <p class="intro">Introduce el correo asociado a tu cuenta. Te enviaremos un enlace para crear una nueva
+                contraseña.</p>
+
+              <form id="forgot-form" novalidate>
+                <div class="field">
+                  <label for="forgot-email">Correo electrónico</label>
+                  <input id="forgot-email" type="email" placeholder="nombre@ejemplo.com" autocomplete="email"
+                    autocapitalize="none" spellcheck="false" maxlength="254">
+                  <p class="field-error" data-error-for="forgot-email"></p>
+                </div>
+
+                <button class="primary-button" type="submit">Enviar enlace de recuperación</button>
+              </form>
+
+              <div class="info-box" id="forgot-info">
+                <p id="forgot-info-text">Enviamos un enlace válido durante 30 minutos. Si no lo ves, revisa la carpeta
+                  de spam o correo no deseado.</p>
+              </div>
+
+              <button class="secondary-button" type="button" id="open-mail-link" hidden>
+                Abrir enlace del correo (demo)
+              </button>
+
+              <p class="signup"><a href="#register">¿No
+                  tienes acceso a este correo?</a></p>
+
+              <p class="demo-hint">Demo: <code>demo@ejemplo.com</code></p>
+            </div>
+          </section>
+        </div>
+      </main>
+
+      <!-- RESTABLECER -->
+      <main class="screen" id="screen-reset" data-screen="reset" data-title="Restablecer contraseña">
+        <div class="layout">
+          <aside class="side-panel side-panel--gray">
+            <p class="eyebrow eyebrow--line">RESTABLECER CONTRASEÑA</p>
+            <h2>Tu cuenta.<br>Una clave<br>más segura.</h2>
+            <p class="panel-description">Identidad verificada. Protege tu cuenta con una nueva contraseña.</p>
+            <div class="panel-foot">
+              <strong>Única. Solo tuya.</strong>
+              <p>Elige una contraseña que no uses en otras cuentas y no la compartas con nadie.</p>
+            </div>
+          </aside>
+
+          <section class="form-section" aria-labelledby="reset-title">
+            <div class="form-container">
+              <a class="back-link" href="#login">← Volver a iniciar sesión</a>
+              <span class="verified-badge">Identidad verificada</span>
+              <h1 id="reset-title">Restablecer contraseña.</h1>
+              <p class="intro">Crea una nueva contraseña para tu cuenta. Debe ser diferente de la anterior.</p>
+
+              <form id="reset-form" novalidate>
+                <div class="field">
+                  <label for="new-password">Nueva contraseña</label>
+                  <div class="password-wrapper">
+                    <input id="new-password" type="password" autocomplete="new-password"
+                      placeholder="Crea una contraseña">
+                    <button class="password-toggle" type="button" aria-label="Mostrar contraseña"
+                      aria-controls="new-password" aria-pressed="false" data-toggle-password></button>
+                  </div>
+
+                  <div class="strength" id="strength" data-level="0">
+                    <div class="strength-bars" aria-hidden="true"><span></span><span></span><span></span></div>
+                    <div class="strength-row">
+                      <span class="strength-text">Seguridad de la contraseña</span>
+                      <span class="strength-label" id="strength-label" aria-live="polite"></span>
+                    </div>
+                  </div>
+
+                  <ul class="rules" id="rules">
+                    <li data-rule="length"><i aria-hidden="true"></i> Al menos 8 caracteres</li>
+                    <li data-rule="upper"><i aria-hidden="true"></i> Una mayúscula</li>
+                    <li data-rule="numsym"><i aria-hidden="true"></i> Un número y un símbolo</li>
+                  </ul>
+                </div>
+
+                <div class="field">
+                  <label for="confirm-password">Confirmar contraseña</label>
+                  <div class="password-wrapper">
+                    <input id="confirm-password" type="password" autocomplete="new-password"
+                      placeholder="Repite tu contraseña">
+                    <button class="password-toggle" type="button" aria-label="Mostrar contraseña"
+                      aria-controls="confirm-password" aria-pressed="false" data-toggle-password></button>
+                  </div>
+                  <p class="match-msg" id="match-msg" aria-live="polite"></p>
+                </div>
+
+                <button class="primary-button" type="submit" id="reset-submit" disabled>Guardar nueva
+                  contraseña</button>
+                <p class="after-note">Después de guardarla, podrás iniciar sesión con tu nueva contraseña.</p>
+              </form>
+            </div>
+          </section>
+        </div>
+      </main>
+
+      <!-- ===================== 6. CUENTA ===================== -->
+      <main class="screen" id="screen-account" data-screen="account" data-title="Mi cuenta">
+        <div class="layout layout--single">
+          <section class="form-section" aria-labelledby="account-title">
+            <div class="form-container form-container--center">
+              <span class="icon-badge icon-badge--ok" aria-hidden="true">✓</span>
+              <h1 id="account-title">Has iniciado sesión.</h1>
+              <p class="intro">Sesión iniciada como <strong id="account-email">tu correo</strong>. Este es tu espacio
+                personal.</p>
+              <button class="primary-button" type="button" id="logout-btn">Cerrar sesión</button>
+            </div>
+          </section>
+        </div>
+      </main>
+
+    </div>
+
+    <footer class="footer">
+      <a href="#login">Privacidad</a>
+      <a href="#login">Términos</a>
+      <span>Español</span>
+    </footer>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+</body>
+
+</html>
